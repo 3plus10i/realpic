@@ -1,0 +1,16 @@
+{
+    "front": {},
+    "back": {
+        "image": "zmdpaper.png"
+    },
+    "contentArea": [
+        {
+            "area": 0,
+            "side": "front"
+        },
+        {
+            "area": 1,
+            "side": "back"
+        }
+    ]
+}

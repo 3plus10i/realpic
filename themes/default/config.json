@@ -1,0 +1,14 @@
+{
+    "front": {},
+    "back": {},
+    "contentArea": [
+        {
+            "area": 0,
+            "side": "front"
+        },
+        {
+            "area": 1,
+            "side": "back"
+        }
+    ]
+}

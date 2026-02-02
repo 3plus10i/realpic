@@ -1,0 +1,32 @@
+{
+    "front": {
+        "image": "./postcard-A.png"
+    },
+    "back": {
+        "image": "./postcard-B.png"
+    },
+    "contentArea": [
+        {
+            "area": 0,
+            "side": "front",
+            "x": 46,
+            "y": 46,
+            "width": 990,
+            "height": 640,
+            "fit": "contain"
+        },
+        {
+            "area": 1,
+            "side": "back",
+            "x": 60,
+            "y": 190,
+            "width": 480,
+            "height": 320,
+            "style": {
+                "color": "#333333",
+                "fontSize": "20px",
+                "fontFamily": "'Microsoft YaHei', sans-serif"
+            }
+        }
+    ]
+}

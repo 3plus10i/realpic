@@ -1,0 +1,35 @@
+{
+    "front": {
+        "image": "./photocard-L-A.png"
+    },
+    "back": {
+        "image": "./photocard-L-B.png"
+    },
+    "contentArea": [
+        {
+            "area": 0,
+            "side": "front",
+            "x": 21,
+            "y": 21,
+            "width": 1079,
+            "height": 807,
+            "position": "center",
+            "fit": "contain"
+        },
+        {
+            "area": 1,
+            "side": "back",
+            "x": 21,
+            "y": 21,
+            "width": 1079,
+            "height": 807,
+            "position": "center",
+            "fit": "contain",
+            "style": {
+                "color": "#333333",
+                "fontSize": "32px",
+                "fontFamily": "'SimSun', sans-serif"
+            }
+        }
+    ]
+}
