@@ -4,7 +4,7 @@
  * 功能：为图片提供统一的模态框查看体验，支持3D翻转展示图片描述
  */
 
-import RealPic from './realpic.js';
+import RealPic, { parseLightMD } from './realpic.js';
 
 /**
  * @typedef {Object} ViewerOptions
@@ -26,6 +26,7 @@ export class RealPicViewer {
             modalId: 'viewerModal',
             containerId: 'viewerContainer',
             titleId: 'viewerTitle',
+            descriptionId: 'viewerDescription',
             closeBtnId: 'viewerCloseBtn',
             flipBtnId: 'viewerFlipBtn',
             originPath: '/images/',
@@ -39,6 +40,7 @@ export class RealPicViewer {
         this.modal = document.getElementById(this.options.modalId);
         this.container = document.getElementById(this.options.containerId);
         this.titleEl = document.getElementById(this.options.titleId);
+        this.descriptionEl = document.getElementById(this.options.descriptionId);
         this.closeBtn = document.getElementById(this.options.closeBtnId);
         this.flipBtn = document.getElementById(this.options.flipBtnId);
         
@@ -123,7 +125,7 @@ export class RealPicViewer {
     
     /**
      * 显示图片
-     * @param {Object} image - 图片元数据 { filename, title, description, theme }
+     * @param {Object} image - 图片元数据 { filename, title, description, postscript, theme }
      */
     async show(image) {
         if (!this.realpic) return;
@@ -138,10 +140,15 @@ export class RealPicViewer {
             this.titleEl.textContent = image.title || '';
         }
         
+        // 设置描述（显示在标题下方，支持轻量级 Markdown）
+        if (this.descriptionEl) {
+            this.descriptionEl.innerHTML = parseLightMD(image.description || '');
+        }
+        
         // 获取主题路径
         const themePath = this.getThemePath(image.theme);
         
-        // 设置 RealPic 内容
+        // 设置 RealPic 内容：正面图片，背面 postscript
         await this.realpic.setOptions({
             themePath: themePath,
             contents: [
@@ -154,7 +161,7 @@ export class RealPicViewer {
                 { 
                     area: 1,
                     type: 'text', 
-                    content: image.description || ''
+                    content: image.postscript || ''
                 }
             ]
         });

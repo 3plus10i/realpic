@@ -32,7 +32,7 @@
     gap: 20px;
     width: 90vw;
     max-width: 1000px;
-    height: 80vh;
+    height: 95vh;
 }
 
 /* RealPic 容器 - 需要明确的宽高 */
@@ -45,15 +45,37 @@
     position: relative;
 }
 
+/* 信息区域 */
+.viewer-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    max-width: 80%;
+}
+
 /* 标题 */
 .viewer-title {
-    color: #fff;
-    font-size: 18px;
-    font-weight: 500;
+    color: #e1e1e1;
+    font-size: 1.25em;
+    font-weight: 400;
     text-align: center;
-    max-width: 600px;
-    padding: 0 20px;
+    line-height: 1.4;
+}
+
+/* 描述 */
+.viewer-description {
+    color: #aaa;
+    font-size: 1em;
+    text-align: center;
     line-height: 1.5;
+    opacity: 0.9;
+}
+
+/* Markdown 链接样式 */
+.viewer-md-link {
+    color: #4a9eff;
+    text-decoration: underline;
 }
 
 /* 右下角控制按钮组 */
@@ -94,7 +116,7 @@
 @media (max-width: 768px) {
     .viewer-content {
         max-width: 95%;
-        max-height: 85%;
+        max-height: 80%;
     }
     
     .viewer-title {
