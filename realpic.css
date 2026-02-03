@@ -1,4 +1,15 @@
 /* RealPic 组件样式 */
+
+/* 注册./fonts/中存在的字体 */
+/* 平方韶华体 */
+@font-face {
+    font-family: 'pingfangshaohua';
+    src: url('./../realpic/fonts/pingfangshaohua.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 .realpic-mount-point { box-sizing: border-box; }
 
 .realpic-root {

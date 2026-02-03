@@ -38,7 +38,7 @@
 /* RealPic 容器 - 需要明确的宽高 */
 .viewer-container {
     width: 100%;
-    height: calc(100% - 50px); /* 减去标题高度和间距 */
+    height: calc(100% - 100px); /* 减去标题高度和间距 */
     display: flex;
     justify-content: center;
     align-items: center;

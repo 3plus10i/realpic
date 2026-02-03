@@ -621,12 +621,13 @@ export default class RealPic {
                 <foreignObject width="${width}" height="${height}">
                     <div xmlns="http://www.w3.org/1999/xhtml" 
                          class="realpic-text-content"
-                         style="width: ${width}px; height: ${height}px; overflow: hidden; display: flex; flex-direction: column; align-items: ${alignItems}; justify-content: ${justifyContent}; font-size: ${fontSize}px;">
+                         style="width: ${width}px; height: ${height}px; overflow: hidden; display: flex; align-items: ${alignItems}; justify-content: ${justifyContent}; font-size: ${fontSize}px;">
                         <div style="width: 100%; text-align: ${textAlign};">${htmlContent}</div>
                     </div>
                 </foreignObject>
             </svg>
         `;
+        // <div style="width: 100%; text-align: ${textAlign};">${htmlContent}</div>
     }
 
     /**

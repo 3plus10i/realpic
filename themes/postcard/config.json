@@ -1,31 +1,32 @@
 {
     "front": {
-        "image": "./postcard-A.png"
+        "image": "./postcard-A-v2.png"
     },
     "back": {
-        "image": "./postcard-B.png"
+        "image": "./postcard-B-v2.png"
     },
     "contentArea": [
         {
             "area": 0,
             "side": "front",
-            "x": 46,
-            "y": 46,
-            "width": 990,
-            "height": 640,
+            "x": 50,
+            "y": 55,
+            "width": 980,
+            "height": 620,
             "fit": "contain"
         },
         {
             "area": 1,
             "side": "back",
-            "x": 60,
-            "y": 190,
-            "width": 480,
-            "height": 320,
+            "x": 80,
+            "y": 180,
+            "width": 670,
+            "height": 250,
+            "position": "left",
             "style": {
                 "color": "#333333",
-                "fontSize": "20px",
-                "fontFamily": "'Microsoft YaHei', sans-serif"
+                "fontSize": "32px",
+                "fontFamily": "pingfangshaohua, 'Segoe Script',Simsun,'Microsoft YaHei', sans-serif"
             }
         }
     ]
