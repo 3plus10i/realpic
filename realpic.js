@@ -11,7 +11,7 @@
 
 const PERSPECTIVE_FACTOR = 0.01;
 const DEFAULT_BACKGROUND = '#eeeeee';
-const DEFAULT_FONT_SCALE = 0.025; // 默认字体为 realpic 宽度的多少（推荐2.5%）
+const DEFAULT_FONT_SCALE = 0.03; // 默认字体为 realpic 宽度的多少（推荐2.5%）
 
 /**
  * 极轻量化 Markdown 解析器

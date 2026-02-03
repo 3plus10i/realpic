@@ -10,7 +10,11 @@
         },
         {
             "area": 1,
-            "side": "back"
+            "side": "back",
+            "style": {
+                "color": "#333333",
+                "fontFamily": "pingfangshaohua, 'Segoe Script',Simsun,'Microsoft YaHei', sans-serif"
+            }
         }
     ]
 }

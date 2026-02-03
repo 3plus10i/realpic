@@ -27,8 +27,8 @@
             "fit": "contain",
             "style": {
                 "color": "#333333",
-                "fontSize": "20px",
-                "fontFamily": "'SimSun', sans-serif"
+                "fontSize": "42px",
+                "fontFamily": "pingfangshaohua, 'Segoe Script',Simsun,'Microsoft YaHei', sans-serif"
             }
         }
     ]
