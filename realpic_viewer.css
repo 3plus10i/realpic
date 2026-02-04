@@ -43,6 +43,14 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.viewer-modal.active .viewer-container {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* 信息区域 */
@@ -128,13 +136,9 @@
 }
 
 /* 加载时隐藏内容，避免重影 */
-.viewer-modal.loading .viewer-content {
+.viewer-modal.loading .viewer-container {
     opacity: 0;
-}
-
-.viewer-modal .viewer-content {
-    opacity: 1;
-    transition: opacity 0.3s ease;
+    transform: translateY(15px);
 }
 
 /* 响应式适配 */
