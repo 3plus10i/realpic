@@ -31,7 +31,8 @@ export class RealPicViewer {
             flipBtnId: 'viewerFlipBtn',
             originPath: '/images/',
             themesPath: '/static/realpic/themes/',
-            defaultTheme: 'zmd',
+            defaultTheme: '',
+            loadingImage: '/static/realpic/blocks-shuffle-2.svg',
             onOpen: null,
             onClose: null,
             ...options
@@ -59,6 +60,9 @@ export class RealPicViewer {
             return;
         }
         
+        // 创建加载动画元素
+        this._createLoadingElement();
+        
         // 初始化 RealPic 实例
         this.realpic = new RealPic(this.container);
         
@@ -77,6 +81,29 @@ export class RealPicViewer {
         // 绑定点击和键盘事件
         this.modal.addEventListener('click', this._boundClickHandler);
         document.addEventListener('keydown', this._boundKeyHandler);
+    }
+    
+    /**
+     * 创建加载动画元素
+     * @private
+     */
+    _createLoadingElement() {
+        // 检查是否已存在
+        if (this.modal.querySelector('.viewer-loading')) {
+            return;
+        }
+        
+        const loadingEl = document.createElement('div');
+        loadingEl.className = 'viewer-loading';
+        
+        const img = document.createElement('img');
+        img.src = this.options.loadingImage;
+        img.alt = '加载中';
+        img.width = 80;
+        img.height = 80;
+        
+        loadingEl.appendChild(img);
+        this.modal.appendChild(loadingEl);
     }
     
     /**
