@@ -395,6 +395,10 @@ export default class RealPic {
      */
     _createContentAreas() {
         this.contentAreas.clear();
+        
+        // 清空现有框架内容，确保无残留
+        this.frontFrame.innerHTML = '';
+        this.backFrame.innerHTML = '';
 
         this.parsedConfig.contentArea.forEach(areaConfig => {
             const side = areaConfig.side;
@@ -572,6 +576,7 @@ export default class RealPic {
      * @private
      */
     _mountImageContent(areaEl, contentData) {
+        areaEl.innerHTML = ''; // 清空之前的内容，防止重影
         const img = document.createElement('img');
         img.src = contentData.src || '';
         img.alt = contentData.alt || '';

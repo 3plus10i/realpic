@@ -112,6 +112,31 @@
     stroke: #ccc;
 }
 
+/* 加载动画容器 */
+.viewer-loading {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10002;
+    pointer-events: none;
+}
+
+.viewer-modal.loading .viewer-loading {
+    display: block;
+}
+
+/* 加载时隐藏内容，避免重影 */
+.viewer-modal.loading .viewer-content {
+    opacity: 0;
+}
+
+.viewer-modal .viewer-content {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
 /* 响应式适配 */
 @media (max-width: 768px) {
     .viewer-content {

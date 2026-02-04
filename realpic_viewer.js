@@ -130,6 +130,10 @@ export class RealPicViewer {
     async show(image) {
         if (!this.realpic) return;
         
+        // 如果正在加载中，忽略此次点击
+        if (this.isLoading) return;
+        this.isLoading = true;
+        
         // 执行打开回调
         if (this.options.onOpen) {
             await this.options.onOpen(image);
@@ -148,28 +152,86 @@ export class RealPicViewer {
         // 获取主题路径
         const themePath = this.getThemePath(image.theme);
         
-        // 设置 RealPic 内容：正面图片，背面 postscript
-        await this.realpic.setOptions({
-            themePath: themePath,
-            contents: [
-                { 
-                    area: 0,
-                    type: 'image', 
-                    src: `${this.options.originPath}${image.filename}`,
-                    alt: image.title 
-                },
-                { 
-                    area: 1,
-                    type: 'text', 
-                    content: image.postscript || ''
-                }
-            ]
-        });
-        
-        // 显示模态框
+        // 先显示模态框和加载动画
         this.modal.classList.add('active');
+        this.modal.classList.add('loading');
         document.body.style.overflow = 'hidden';
         this.isOpen = true;
+        
+        try {
+            // 预加载所有资源（大图 + 主题图片）
+            await this._preloadResources(image, themePath);
+            
+            // 资源就绪后，设置 RealPic 内容并渲染
+            await this.realpic.setOptions({
+                themePath: themePath,
+                contents: [
+                    { 
+                        area: 0,
+                        type: 'image', 
+                        src: `${this.options.originPath}${image.filename}`,
+                        alt: image.title 
+                    },
+                    { 
+                        area: 1,
+                        type: 'text', 
+                        content: image.postscript || ''
+                    }
+                ]
+            });
+        } catch (error) {
+            console.error('加载图片失败:', error);
+        } finally {
+            // 移除加载状态，显示内容
+            this.modal.classList.remove('loading');
+            this.isLoading = false;
+        }
+    }
+    
+    /**
+     * 预加载所有必需资源
+     * @private
+     */
+    async _preloadResources(image, themePath) {
+        const resourcesToLoad = [];
+        
+        // 1. 预加载大图
+        const originUrl = `${this.options.originPath}${image.filename}`;
+        resourcesToLoad.push(this._preloadImage(originUrl));
+        
+        // 2. 加载主题配置并预加载主题图片
+        try {
+            const configUrl = `${themePath}config.json`;
+            const configResponse = await fetch(configUrl);
+            if (configResponse.ok) {
+                const config = await configResponse.json();
+                // 预加载主题 front/back 图片
+                if (config.front?.image) {
+                    resourcesToLoad.push(this._preloadImage(`${themePath}${config.front.image}`));
+                }
+                if (config.back?.image) {
+                    resourcesToLoad.push(this._preloadImage(`${themePath}${config.back.image}`));
+                }
+            }
+        } catch (e) {
+            // 主题配置加载失败不影响主图显示
+        }
+        
+        // 等待所有资源加载完成
+        await Promise.all(resourcesToLoad);
+    }
+    
+    /**
+     * 预加载单张图片
+     * @private
+     */
+    _preloadImage(url) {
+        return new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => resolve(img);
+            img.onerror = () => resolve(null); // 加载失败也继续
+            img.src = url;
+        });
     }
     
     /**
