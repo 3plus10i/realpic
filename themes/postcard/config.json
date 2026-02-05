@@ -1,18 +1,18 @@
 {
     "front": {
-        "image": "./postcard-A-v2.png"
+        "image": "./postcard-A.svg"
     },
     "back": {
-        "image": "./postcard-B-v2.png"
+        "image": "./postcard-B.svg"
     },
     "contentArea": [
         {
             "area": 0,
             "side": "front",
-            "x": 50,
-            "y": 55,
-            "width": 980,
-            "height": 620,
+            "x": 65,
+            "y": 65,
+            "width": 960,
+            "height": 610,
             "fit": "contain"
         },
         {
@@ -24,9 +24,9 @@
             "height": 250,
             "position": "left",
             "style": {
-                "color": "#333333",
+                "color": "#1A1A1A",
                 "fontSize": "32px",
-                "fontFamily": "pingfangshaohua, 'Segoe Script',Simsun,'Microsoft YaHei', sans-serif"
+                "fontFamily": "'Ink free', zhiyongshoushu, SimSun, 'Microsoft YaHei', sans-serif"
             }
         }
     ]

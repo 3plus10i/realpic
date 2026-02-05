@@ -1,9 +1,9 @@
 {
     "front": {
-        "image": "./photocard-v2-SVGtext-L-A.svg"
+        "image": "./photocard-v2-X-A.svg"
     },
     "back": {
-        "image": "./photocard-v2-SVGtext-L-B.svg"
+        "image": "./photocard-v2-X-B.svg"
     },
     "contentArea": [
         {
@@ -11,7 +11,7 @@
             "side": "front",
             "x": 30,
             "y": 30,
-            "width": 1080,
+            "width": 1440,
             "height": 810,
             "position": "center",
             "fit": "contain"
@@ -21,7 +21,7 @@
             "side": "back",
             "x": 30,
             "y": 30,
-            "width": 1080,
+            "width": 1440,
             "height": 810,
             "position": "center",
             "fit": "contain",

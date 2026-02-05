@@ -1,7 +1,7 @@
 {
     "front": {},
     "back": {
-        "image": "paper.png"
+        "image": "paper.jpg"
     },
     "contentArea": [
         {
@@ -12,8 +12,8 @@
             "area": 1,
             "side": "back",
             "style": {
-                "color": "#333333",
-                "fontFamily": "pingfangshaohua, 'Segoe Script',Simsun,'Microsoft YaHei', sans-serif"
+                "color": "#1A1A1A",
+                "fontFamily": "'Ink free', zhiyongshoushu, SimSun, 'Microsoft YaHei', sans-serif"
             }
         }
     ]

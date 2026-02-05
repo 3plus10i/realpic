@@ -1,16 +1,16 @@
 {
     "front": {
-        "image": "./photocard-S-A.png"
+        "image": "./photocard-v2-S-A.svg"
     },
     "back": {
-        "image": "./photocard-S-B.png"
+        "image": "./photocard-v2-S-B.svg"
     },
     "contentArea": [
         {
             "area": 0,
             "side": "front",
-            "x": 21,
-            "y": 21,
+            "x": 30,
+            "y": 30,
             "width": 810,
             "height": 810,
             "position": "center",
@@ -19,16 +19,16 @@
         {
             "area": 1,
             "side": "back",
-            "x": 21,
-            "y": 21,
+            "x": 30,
+            "y": 30,
             "width": 810,
             "height": 810,
             "position": "center",
             "fit": "contain",
             "style": {
-                "color": "#333333",
-                "fontSize": "42px",
-                "fontFamily": "pingfangshaohua, 'Segoe Script',Simsun,'Microsoft YaHei', sans-serif"
+                "color": "#1A1A1A",
+                "fontSize": "40px",
+                "fontFamily": "'Ink free', zhiyongshoushu, SimSun, 'Microsoft YaHei', sans-serif"
             }
         }
     ]
