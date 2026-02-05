@@ -21,6 +21,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color-scheme: light; /* 禁用深色模式自动适配 */
 }
 
 .realpic-viewport {
