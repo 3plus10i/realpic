@@ -30,15 +30,15 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    width: 90vw;
-    max-width: 1000px;
+    width: 95vw;
+    /* max-width: 1000px; */
     height: 95vh;
 }
 
 /* RealPic 容器 - 需要明确的宽高 */
 .viewer-container {
     width: 100%;
-    height: calc(100% - 100px); /* 减去标题高度和间距 */
+    height: calc(100% - 100px); /* 下方文字区域 */
     display: flex;
     justify-content: center;
     align-items: center;
