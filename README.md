@@ -2,6 +2,8 @@
 
 使用Realpic将图文内容放入主题框架，支持 3D 翻转效果与鼠标跟随透视。
 
+在线演示：[查看演示页面](https://3plus10i.github.io/realpic/demo/demo.html)
+
 ## 特性
 
 - **3D 翻转** - 流畅的 CSS 3D 翻转动画
