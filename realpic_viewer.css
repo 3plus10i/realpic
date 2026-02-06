@@ -82,6 +82,15 @@
     opacity: 0.9;
 }
 
+/* 代码块样式 */
+.viewer-tags code {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.2em 0.4em;
+    border-radius: 0.4em;
+    font-size: 0.85em;
+    color: #cccccc;
+}
+
 /* Markdown 链接样式 */
 .viewer-md-link {
     color: #4a9eff;

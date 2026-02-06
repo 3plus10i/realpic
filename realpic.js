@@ -13,15 +13,53 @@ const PERSPECTIVE_FACTOR = 0.01;
 const DEFAULT_BACKGROUND = '#eeeeee';
 const DEFAULT_FONT_SCALE = 0.03; // 默认字体为 realpic 宽度的多少（推荐2.5%）
 
+// 动态导入 marked 库（ESM 方式）
+let markedPromise = null;
+async function getMarked() {
+    if (!markedPromise) {
+        markedPromise = import('https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.min.js')
+            .then(m => m.marked)
+            .catch(() => null);
+    }
+    return markedPromise;
+}
+
 /**
- * 极轻量化 Markdown 解析器
- * 支持：**加粗**、*斜体*、~~删除线~~、[链接](url)、换行
- * @param {string} md - Markdown 文本
- * @returns {string} HTML
+ * 处理链接，添加安全属性
+ * @param {string} html - HTML 字符串
+ * @returns {string} 处理后的 HTML
  */
-export function parseLightMD(md) {
+function processLinks(html) {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+    tempDiv.querySelectorAll('a').forEach(link => {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+        link.classList.add('viewer-md-link');
+    });
+    return tempDiv.innerHTML;
+}
+
+/**
+ * Markdown 解析器（基于 marked）
+ * 支持标准 Markdown 语法
+ * @param {string} md - Markdown 文本
+ * @returns {Promise<string>} HTML
+ */
+export async function parseLightMD(md) {
     if (!md || typeof md !== 'string') return '';
 
+    const marked = await getMarked();
+    if (marked) {
+        try {
+            const html = marked.parse(md);
+            return processLinks(html);
+        } catch (e) {
+            console.warn('Marked parse error:', e);
+        }
+    }
+
+    // Fallback: 基础格式支持
     return md
         .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
         .replace(/\*([^*]+)\*/g, '<em>$1</em>')
@@ -288,8 +326,12 @@ export default class RealPic {
         this.reset();
         this._clearFrames();
         this.contentAreas.clear();
-        await this._loadAndRender();
-        this.show();
+        try {
+            await this._loadAndRender();
+            this.show();
+        } catch (error) {
+            console.error('更新内容失败:', error);
+        }
     }
 
     /**
@@ -325,7 +367,7 @@ export default class RealPic {
         this._applyLayout();
 
         // 6. 挂载内容
-        this._mountContents();
+        await this._mountContents();
     }
 
     /**
@@ -548,10 +590,10 @@ export default class RealPic {
      * 挂载内容
      * @private
      */
-    _mountContents() {
+    async _mountContents() {
         const contents = this.options.contents || [];
 
-        contents.forEach((contentData, index) => {
+        const tasks = contents.map(async (contentData, index) => {
             const areaId = contentData.area !== undefined ? contentData.area : index;
             const areaInfo = this.contentAreas.get(areaId);
 
@@ -566,9 +608,11 @@ export default class RealPic {
             if (contentData.type === 'image') {
                 this._mountImageContent(areaEl, contentData);
             } else if (contentData.type === 'text') {
-                this._mountTextContent(areaEl, contentData, areaConfig);
+                await this._mountTextContent(areaEl, contentData, areaConfig);
             }
         });
+
+        await Promise.all(tasks);
     }
 
     /**
@@ -587,7 +631,7 @@ export default class RealPic {
      * 挂载文本内容（使用 SVG foreignObject 实现完美缩放）
      * @private
      */
-    _mountTextContent(areaEl, contentData, areaConfig) {
+    async _mountTextContent(areaEl, contentData, areaConfig) {
         const side = areaConfig.side;
         const sideDimensions = this.dimensions[side];
         // 这里不能只基于宽度，因为有些瘦高图片的超高会导致放缩，进而导致基于宽度的字号太小
@@ -616,7 +660,7 @@ export default class RealPic {
         };
         const [alignItems, justifyContent, textAlign] = alignMap[areaConfig.position || 'center'];
 
-        const htmlContent = parseLightMD(contentData.content || '');
+        const htmlContent = await parseLightMD(contentData.content || '');
 
         areaEl.innerHTML = `
             <svg viewBox="0 0 ${width} ${height}" 

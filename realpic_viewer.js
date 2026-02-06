@@ -27,6 +27,7 @@ export class RealPicViewer {
             containerId: 'viewerContainer',
             titleId: 'viewerTitle',
             descriptionId: 'viewerDescription',
+            tagsId: 'viewerTags',
             closeBtnId: 'viewerCloseBtn',
             flipBtnId: 'viewerFlipBtn',
             originPath: '/images/',
@@ -42,6 +43,7 @@ export class RealPicViewer {
         this.container = document.getElementById(this.options.containerId);
         this.titleEl = document.getElementById(this.options.titleId);
         this.descriptionEl = document.getElementById(this.options.descriptionId);
+        this.tagsEl = document.getElementById(this.options.tagsId);
         this.closeBtn = document.getElementById(this.options.closeBtnId);
         this.flipBtn = document.getElementById(this.options.flipBtnId);
         
@@ -171,9 +173,17 @@ export class RealPicViewer {
             this.titleEl.textContent = image.title || '';
         }
         
-        // 设置描述（显示在标题下方，支持轻量级 Markdown）
+        // 设置描述（显示在标题下方，支持 Markdown）
         if (this.descriptionEl) {
-            this.descriptionEl.innerHTML = parseLightMD(image.description || '');
+            this.descriptionEl.innerHTML = await parseLightMD(image.description || '');
+        }
+        
+        // 设置标签（用反引号包裹每个标签，以显示代码样式背景）
+        if (this.tagsEl && image.tags && image.tags.length > 0) {
+            const tagsMarkdown = image.tags.map(tag => `\`${tag}\``).join(' ');
+            this.tagsEl.innerHTML = await parseLightMD(tagsMarkdown);
+        } else if (this.tagsEl) {
+            this.tagsEl.innerHTML = '';
         }
         
         // 获取主题路径
