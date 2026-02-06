@@ -17,6 +17,8 @@
     align-items: center;
     opacity: 0;
     transition: opacity 0.3s ease;
+    color-scheme: light; /* 禁用深色模式自动适配 */
+    forced-color-adjust: none; /* 禁用强制颜色调整 */
 }
 
 .viewer-modal.active {

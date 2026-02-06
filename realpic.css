@@ -22,6 +22,7 @@
     align-items: center;
     justify-content: center;
     color-scheme: light; /* 禁用深色模式自动适配 */
+    forced-color-adjust: none; /* 禁用强制颜色调整 */
 }
 
 .realpic-viewport {
@@ -97,6 +98,7 @@
     overflow-wrap: break-word;
     text-align: inherit;
     line-height: 1.6;
+    forced-color-adjust: none; /* 禁用强制颜色调整，保留主题配置的颜色 */
 }
 
 .realpic-hidden {
