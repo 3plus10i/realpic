@@ -4,7 +4,7 @@
 /* 智勇手书3600 */
 @font-face {
     font-family: 'zhiyongshoushu';
-    src: url('./../realpic/fonts/zhiyongshoushu4000.woff2') format('woff2');
+    src: url('./fonts/zhiyongshoushu4000.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -13,7 +13,7 @@
 /* Caveat 手写体 */
 @font-face {
     font-family: 'caveat';
-    src: url('./../realpic/fonts/caveat.woff2') format('woff2');
+    src: url('./fonts/caveat.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
