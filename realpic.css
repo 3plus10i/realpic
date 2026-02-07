@@ -10,6 +10,15 @@
     font-display: swap;
 }
 
+/* Caveat 手写体 */
+@font-face {
+    font-family: 'caveat';
+    src: url('./../realpic/fonts/caveat.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 .realpic-mount-point { box-sizing: border-box; }
 
 .realpic-root {

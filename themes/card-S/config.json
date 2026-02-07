@@ -28,7 +28,7 @@
             "style": {
                 "color": "#1A1A1A",
                 "fontSize": "40px",
-                "fontFamily": "'Ink free', zhiyongshoushu, SimSun, 'Microsoft YaHei', sans-serif"
+                "fontFamily": "caveat, zhiyongshoushu, 'Microsoft YaHei', sans-serif"
             }
         }
     ]

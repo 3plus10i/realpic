@@ -13,7 +13,7 @@
             "side": "back",
             "style": {
                 "color": "#1A1A1A",
-                "fontFamily": "'Ink free', zhiyongshoushu, SimSun, 'Microsoft YaHei', sans-serif"
+                "fontFamily": "caveat, zhiyongshoushu, 'Microsoft YaHei', sans-serif"
             }
         }
     ]

@@ -33,7 +33,7 @@ export class RealPicViewer {
             originPath: '/images/',
             themesPath: '/static/realpic/themes/',
             defaultTheme: '',
-            loadingImage: '/static/realpic/blocks-shuffle-2.svg',
+            loadingImage: '/static/realpic/loading.svg',
             onOpen: null,
             onClose: null,
             ...options
