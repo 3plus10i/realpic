@@ -9,7 +9,8 @@
  *   - 第1项: text 类型，对应 contentArea[1] (back)
  */
 
-const PERSPECTIVE_FACTOR = 0.01;
+const PERSPECTIVE_MAX_ROTATION = 4; // PC端最大旋转角度（度）
+const PERSPECTIVE_MAX_ROTATION_MOBILE = 12; // 移动端最大旋转角度（度）
 const DEFAULT_BACKGROUND = '#eeeeee';
 const DEFAULT_FONT_SCALE = 0.03; // 默认字体为 realpic 宽度的多少（推荐2.5%）
 
@@ -782,20 +783,24 @@ export default class RealPic {
     _updatePerspective() {
         if (this.isAnimating || this._lastMouseX === undefined) return;
 
-        const rect = this.rootElement.getBoundingClientRect();
+        // 使用 realpic-viewport 计算偏移
+        const rect = this.perspectiveWrapper.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
 
-        const dx = this._lastMouseX - centerX;
-        const dy = centerY - this._lastMouseY;
+        // 计算相对于中心的偏移比例（-1 到 1）
+        const offsetX = (this._lastMouseX - centerX) / (rect.width / 2);
+        const offsetY = (centerY - this._lastMouseY) / (rect.height / 2);
 
-        const rotateX = dy * PERSPECTIVE_FACTOR;
-        const rotateY = dx * PERSPECTIVE_FACTOR;
+        // 根据设备类型选择最大旋转角度
+        const maxRotation = this._isTouching ? PERSPECTIVE_MAX_ROTATION_MOBILE : PERSPECTIVE_MAX_ROTATION;
+
+        // 基于偏移比例计算旋转角度
+        const rotateX = offsetY * maxRotation;
+        const rotateY = offsetX * maxRotation;
 
         this.perspectiveWrapper.style.transform = 
             `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`;
-
-        // 动态阴影效果已移除
     }
 
 
