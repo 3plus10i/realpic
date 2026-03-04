@@ -1,23 +1,7 @@
-/* RealPic 组件样式 */
-
-/* 注册./fonts/中存在的字体 */
-/* 智勇手书3600 */
-@font-face {
-    font-family: 'zhiyongshoushu';
-    src: url('./fonts/zhiyongshoushu4000.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-/* Caveat 手写体 */
-@font-face {
-    font-family: 'caveat';
-    src: url('./fonts/caveat.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
+/* RealPic 组件样式
+ * 字体定义由 main.js 动态创建（从 fonts-config.json 读取）
+ * 如需添加/修改字体，请编辑 realpic/fonts/fonts-config.json
+ */
 
 .realpic-mount-point { box-sizing: border-box; }
 

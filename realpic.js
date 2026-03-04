@@ -18,7 +18,7 @@ const DEFAULT_FONT_SCALE = 0.03; // 默认字体为 realpic 宽度的多少（�
 let markedPromise = null;
 async function getMarked() {
     if (!markedPromise) {
-        markedPromise = import('https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.min.js')
+        markedPromise = import('./marked.esm.min.js')
             .then(m => m.marked)
             .catch(() => null);
     }
