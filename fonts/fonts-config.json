@@ -1,14 +1,8 @@
 {
   "fonts": [
     {
-      "family": "zhiyongshoushu",
-      "file": "zhiyongshoushu4000.woff2",
-      "weight": "normal",
-      "style": "normal"
-    },
-    {
-      "family": "ShouShuti",
-      "file": "ShouShuti_subfont_20260303.woff2",
+      "family": "xiaozhitiao",
+      "file": "XiaoZhiTiao.woff2",
       "weight": "normal",
       "style": "normal"
     },
